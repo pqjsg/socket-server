@@ -12,30 +12,30 @@ private:
 public:
 	Client(const char* ip)
 	{
-		// Инициализируем последнюю библиотеку winsock
+		// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РїРѕСЃР»РµРґРЅСЋСЋ Р±РёР±Р»РёРѕС‚РµРєСѓ winsock
 		WSAData wsaData;
 		WORD DLLVersion = MAKEWORD(2, 2);
 		if (WSAStartup(DLLVersion, &wsaData) != 0)
-			throw gcnew System::Exception("Ошибка инициализации библиотеки.\n");
+			throw gcnew System::Exception("РћС€РёР±РєР° РёРЅРёС†РёР°Р»РёР·Р°С†РёРё Р±РёР±Р»РёРѕС‚РµРєРё.\n");
 
-		// Привязываем порт и ip адрес к сокету
+		// РџСЂРёРІСЏР·С‹РІР°РµРј РїРѕСЂС‚ Рё ip Р°РґСЂРµСЃ Рє СЃРѕРєРµС‚Сѓ
 		SOCKADDR_IN addr;
 		int sizeofaddr = sizeof(addr);
 		addr.sin_addr.s_addr = inet_addr(ip);
 		addr.sin_port = htons(1111);
 		addr.sin_family = AF_INET;
 
-		// Подсоединяемся к серверу
+		// РџРѕРґСЃРѕРµРґРёРЅСЏРµРјСЃСЏ Рє СЃРµСЂРІРµСЂСѓ
 		connection = socket(AF_INET, SOCK_STREAM, NULL);
 		if (connect(connection, (SOCKADDR*)&addr, sizeof(addr)) != 0)
 		{
-			throw gcnew System::Exception("Не удалось подключиться к серверу.\n");
+			throw gcnew System::Exception("РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ Рє СЃРµСЂРІРµСЂСѓ.\n");
 		}
 	}
 
 	~Client()
 	{
-		// Отключаем все сокеты и чистим данные о winsock
+		// РћС‚РєР»СЋС‡Р°РµРј РІСЃРµ СЃРѕРєРµС‚С‹ Рё С‡РёСЃС‚РёРј РґР°РЅРЅС‹Рµ Рѕ winsock
 		shutdown(connection, SD_SEND);
 		closesocket(connection);
 		WSACleanup();
@@ -44,18 +44,18 @@ public:
 	string getAnswer()
 	{
 		char msg[4096];
-		ZeroMemory(msg, 4096); // Инициализируем пустые ячейки в символьном массиве для корректного отображения
+		ZeroMemory(msg, 4096); // РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РїСѓСЃС‚С‹Рµ СЏС‡РµР№РєРё РІ СЃРёРјРІРѕР»СЊРЅРѕРј РјР°СЃСЃРёРІРµ РґР»СЏ РєРѕСЂСЂРµРєС‚РЅРѕРіРѕ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ
 
-		int bytesRecieved = recv(connection, msg, sizeof(msg), NULL); // Получаем сообщение от сервера
+		int bytesRecieved = recv(connection, msg, sizeof(msg), NULL); // РџРѕР»СѓС‡Р°РµРј СЃРѕРѕР±С‰РµРЅРёРµ РѕС‚ СЃРµСЂРІРµСЂР°
 		if (bytesRecieved <= 0)
-			throw gcnew System::Exception("Ошибка в получении ответа от сервера.\n");
+			throw gcnew System::Exception("РћС€РёР±РєР° РІ РїРѕР»СѓС‡РµРЅРёРё РѕС‚РІРµС‚Р° РѕС‚ СЃРµСЂРІРµСЂР°.\n");
 
 		return (string)msg;
 	}
 
 	string sendMessage(string path)
 	{
-		send(connection, path.c_str(), path.size(), NULL); // Отправляем путь до файла/каталога
+		send(connection, path.c_str(), path.size(), NULL); // РћС‚РїСЂР°РІР»СЏРµРј РїСѓС‚СЊ РґРѕ С„Р°Р№Р»Р°/РєР°С‚Р°Р»РѕРіР°
 		return getAnswer();
 	}
 };
