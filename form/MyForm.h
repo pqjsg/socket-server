@@ -14,7 +14,7 @@ namespace tmp4 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Сводка для MyForm
+	/// РЎРІРѕРґРєР° РґР»СЏ MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -23,13 +23,13 @@ namespace tmp4 {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~MyForm()
 		{
@@ -50,14 +50,14 @@ namespace tmp4 {
 		Client* client;
 	private:
 		/// <summary>
-		/// Обязательная переменная конструктора.
+		/// РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
@@ -86,7 +86,7 @@ namespace tmp4 {
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(50, 13);
 			this->label1->TabIndex = 1;
-			this->label1->Text = L"IP-адрес";
+			this->label1->Text = L"IP-Р°РґСЂРµСЃ";
 			// 
 			// sendToServer
 			// 
@@ -94,7 +94,7 @@ namespace tmp4 {
 			this->sendToServer->Name = L"sendToServer";
 			this->sendToServer->Size = System::Drawing::Size(173, 23);
 			this->sendToServer->TabIndex = 2;
-			this->sendToServer->Text = L"Передать серверу";
+			this->sendToServer->Text = L"РџРµСЂРµРґР°С‚СЊ СЃРµСЂРІРµСЂСѓ";
 			this->sendToServer->UseVisualStyleBackColor = true;
 			this->sendToServer->Click += gcnew System::EventHandler(this, &MyForm::sendToServer_Click);
 			// 
@@ -104,7 +104,7 @@ namespace tmp4 {
 			this->connect->Name = L"connect";
 			this->connect->Size = System::Drawing::Size(81, 23);
 			this->connect->TabIndex = 3;
-			this->connect->Text = L"Соединиться";
+			this->connect->Text = L"РЎРѕРµРґРёРЅРёС‚СЊСЃСЏ";
 			this->connect->UseVisualStyleBackColor = true;
 			this->connect->Click += gcnew System::EventHandler(this, &MyForm::connect_Click);
 			// 
@@ -115,7 +115,7 @@ namespace tmp4 {
 			this->disconnect->Name = L"disconnect";
 			this->disconnect->Size = System::Drawing::Size(86, 23);
 			this->disconnect->TabIndex = 4;
-			this->disconnect->Text = L"Отключиться";
+			this->disconnect->Text = L"РћС‚РєР»СЋС‡РёС‚СЊСЃСЏ";
 			this->disconnect->UseVisualStyleBackColor = true;
 			this->disconnect->Click += gcnew System::EventHandler(this, &MyForm::disconnect_Click);
 			// 
@@ -143,7 +143,7 @@ namespace tmp4 {
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(132, 13);
 			this->label2->TabIndex = 9;
-			this->label2->Text = L"Путь до файла/каталога";
+			this->label2->Text = L"РџСѓС‚СЊ РґРѕ С„Р°Р№Р»Р°/РєР°С‚Р°Р»РѕРіР°";
 			// 
 			// MyForm
 			// 
@@ -172,30 +172,30 @@ namespace tmp4 {
 		System::Void connect_Click(System::Object^ sender, System::EventArgs^ e) {
 			try
 			{
-				// Создаем клиенты
+				// РЎРѕР·РґР°РµРј РєР»РёРµРЅС‚С‹
 				string ip = msclr::interop::marshal_as<std::string>(this->ip->Text);
 				client = new Client(ip.c_str());
-				// Переключаем кнопки в интерфейсе
+				// ГЏГҐГ°ГҐГЄГ«ГѕГ·Г ГҐГ¬ ГЄГ­Г®ГЇГЄГЁ Гў ГЁГ­ГІГҐГ°ГґГҐГ©Г±ГҐ
 				this->disconnect->Enabled = true;
 				this->connect->Enabled = false;
 
-				// Формируем строку для вывода в консоль клиента
+				// Р¤РѕСЂРјРёСЂСѓРµРј СЃС‚СЂРѕРєСѓ РґР»СЏ РІС‹РІРѕРґР° РІ РєРѕРЅСЃРѕР»СЊ РєР»РёРµРЅС‚Р°
 				string result;
 				time_t now = time(0);
-				result += "Клиент получил " + (string)ctime(&now) + "\r\n";
+				result += "ГЉГ«ГЁГҐГ­ГІ ГЇГ®Г«ГіГ·ГЁГ« " + (string)ctime(&now) + "\r\n";
 				result += client->getAnswer();
 				this->console->AppendText(gcnew String(result.c_str()));
 			}
 			catch (Exception^ ex)
 			{
-				MessageBox::Show(ex->Message, "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show(ex->Message, "ГЋГёГЁГЎГЄГ ", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 		
 		System::Void disconnect_Click(System::Object^ sender, System::EventArgs^ e) {
-			// Удаляем клиент
+			// РЈРґР°Р»СЏРµРј РєР»РёРµРЅС‚
 			delete client;
-			// Меняем активность кнопок
+			// РњРµРЅСЏРµРј Р°РєС‚РёРІРЅРѕСЃС‚СЊ РєРЅРѕРїРѕРє
 			this->disconnect->Enabled = false;
 			this->connect->Enabled = true;
 		}
@@ -203,16 +203,16 @@ namespace tmp4 {
 		System::Void sendToServer_Click(System::Object^ sender, System::EventArgs^ e) {
 			try
 			{
-				// Формируем строку для вывода в консоль клиента
+				// Р¤РѕСЂРјРёСЂСѓРµРј СЃС‚СЂРѕРєСѓ РґР»СЏ РІС‹РІРѕРґР° РІ РєРѕРЅСЃРѕР»СЊ РєР»РёРµРЅС‚Р°
 				string path = msclr::interop::marshal_as<std::string>(this->filePath->Text), result;
 				time_t now = time(0);
-				result += "Клиент получил " + (string)ctime(&now) + "\r\n";
+				result += "РљР»РёРµРЅС‚ РїРѕР»СѓС‡РёР» " + (string)ctime(&now) + "\r\n";
 				result += client->sendMessage(path);
 				this->console->AppendText(gcnew String(result.c_str()));
 			}
 			catch (Exception^ ex)
 			{
-				MessageBox::Show(ex->Message, "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Error);
+				MessageBox::Show(ex->Message, "РћС€РёР±РєР°", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			}
 		}
 	};
